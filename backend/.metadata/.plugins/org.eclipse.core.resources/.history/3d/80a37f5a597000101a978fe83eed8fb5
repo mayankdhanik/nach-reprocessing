@@ -1,0 +1,91 @@
+package com.nach.util;
+
+/**
+ * Application constants for NACH reprocessing system
+ */
+public final class Constants {
+    
+    // Database Configuration
+    public static final String DB_URL = "jdbc:h2:mem:nachdb;DB_CLOSE_DELAY=-1;INIT=CREATE SCHEMA IF NOT EXISTS NACH";
+    public static final String DB_USERNAME = "sa";
+    public static final String DB_PASSWORD = "";
+    public static final String DB_DRIVER = "org.h2.Driver";
+    
+    // File Upload Configuration
+    public static final long MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+    public static final String ALLOWED_FILE_EXTENSION = ".txt";
+    public static final String UPLOAD_TEMP_DIR = "/tmp/nach-uploads";
+    
+    // Transaction Status
+    public static final String STATUS_SUCCESS = "SUCCESS";
+    public static final String STATUS_ERROR = "ERROR";
+    public static final String STATUS_STUCK = "STUCK";
+    public static final String STATUS_FAILED = "FAILED";
+    public static final String STATUS_REPROCESSED = "REPROCESSED";
+    public static final String STATUS_PARSE_ERROR = "PARSE_ERROR";
+    
+    // File Types
+    public static final String FILE_TYPE_DR = "DR"; // Debit
+    public static final String FILE_TYPE_CR = "CR"; // Credit
+    
+    // Error Codes
+    public static final String ERROR_INSUFFICIENT_BALANCE = "E001";
+    public static final String ERROR_TECHNICAL_ISSUE = "E002";
+    public static final String ERROR_INVALID_MANDATE = "E003";
+    public static final String ERROR_ACCOUNT_CLOSED = "E004";
+    public static final String ERROR_INVALID_AMOUNT = "E005";
+    public static final String ERROR_DUPLICATE_TRANSACTION = "E006";
+    public static final String ERROR_SYSTEM_TIMEOUT = "E007";
+    public static final String ERROR_NETWORK_ERROR = "E008";
+    public static final String ERROR_VALIDATION_FAILED = "E009";
+    public static final String ERROR_FILE_FORMAT_ERROR = "E010";
+    
+    // NACH File Format
+    public static final String FIELD_SEPARATOR = "\\|"; // Pipe separator
+    public static final int MIN_FIELDS_COUNT = 4;
+    public static final int TXN_REF_NO_INDEX = 0;
+    public static final int MANDATE_ID_INDEX = 1;
+    public static final int ACCOUNT_NO_INDEX = 2;
+    public static final int AMOUNT_INDEX = 3;
+    public static final int CUSTOMER_NAME_INDEX = 4;
+    
+    // Response Messages
+    public static final String MSG_FILE_UPLOADED_SUCCESS = "File uploaded and processed successfully";
+    public static final String MSG_FILE_UPLOAD_FAILED = "Failed to upload and process file";
+    public static final String MSG_REPROCESS_SUCCESS = "Transactions reprocessed successfully";
+    public static final String MSG_REPROCESS_FAILED = "Failed to reprocess transactions";
+    public static final String MSG_NO_TRANSACTIONS_SELECTED = "No transactions selected for reprocessing";
+    public static final String MSG_INVALID_FILE_FORMAT = "Invalid file format. Please upload a .txt file";
+    public static final String MSG_FILE_SIZE_EXCEEDED = "File size exceeds maximum limit of 10MB";
+    public static final String MSG_INVALID_REQUEST = "Invalid request parameters";
+    
+    // HTTP Headers
+    public static final String HEADER_CONTENT_TYPE = "Content-Type";
+    public static final String HEADER_ACCESS_CONTROL_ALLOW_ORIGIN = "Access-Control-Allow-Origin";
+    public static final String HEADER_ACCESS_CONTROL_ALLOW_METHODS = "Access-Control-Allow-Methods";
+    public static final String HEADER_ACCESS_CONTROL_ALLOW_HEADERS = "Access-Control-Allow-Headers";
+    
+    // MIME Types
+    public static final String MIME_TYPE_JSON = "application/json";
+    public static final String MIME_TYPE_TEXT = "text/plain";
+    
+    // Date Formats
+    public static final String DATE_FORMAT_ISO = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+    public static final String DATE_FORMAT_SIMPLE = "yyyy-MM-dd";
+    
+    // Validation Patterns
+    public static final String ACCOUNT_NUMBER_PATTERN = "^[0-9]{10,20}$";
+    public static final String MANDATE_ID_PATTERN = "^[A-Z0-9]{10,30}$";
+    public static final String TXN_REF_PATTERN = "^[A-Z0-9]{10,30}$";
+    public static final String AMOUNT_PATTERN = "^[0-9]+\\.?[0-9]*$";
+    
+    // Database Schema
+    public static final String TABLE_NACH_TRANSACTIONS = "nach_transactions";
+    public static final String TABLE_NACH_FILE_UPLOADS = "nach_file_uploads";
+    public static final String TABLE_NACH_REPROCESS_AUDIT = "nach_reprocess_audit";
+    
+    // Private constructor to prevent instantiation
+    private Constants() {
+        throw new AssertionError("Constants class should not be instantiated");
+    }
+}
